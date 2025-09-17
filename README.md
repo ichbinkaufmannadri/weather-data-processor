@@ -57,6 +57,33 @@ If you want to learn more about building native executables, please consult <htt
 
 ### REST
 
+---
+
+## Inserting Dummy Data into PostgreSQL
+
+You can populate the `locations` and `weather_data` tables directly using SQL. Run these commands in your terminal with `psql`:
+
+```bash
+# Connect to PostgreSQL
+psql -h localhost -U postgres -d postgres
+
+# Insert sample locations
+INSERT INTO location (location_id, name, latitude, longitude, city, country) VALUES
+('loc1', 'Monumen Nasional', -6.2, 106.8, 'Jakarta', 'Indonesia'),
+('loc2', 'Patung Sura dan Baya', -7.3, 112.7, 'Surabaya', 'Indonesia'),
+('loc3', 'Gedung Sate', -6.9, 107.6, 'Bandung', 'Indonesia');
+
+# Insert sample weather data
+INSERT INTO weather_data (location_id, temperature, humidity, wind_speed, conditions, timestamp, processed) VALUES
+('loc1', 30.5, 70.0, 5.0, 'Sunny', NOW(), TRUE),
+('loc2', 28.0, 80.0, 10.0, 'Cloudy', NOW(), TRUE),
+('loc3', 25.0, 60.0, 8.0, 'Rainy', NOW(), TRUE);
+
+# Verify the data
+SELECT * FROM location;
+SELECT * FROM weather_data;
+```
+
 Easily start your REST Web Services
 
 [Related guide section...](https://quarkus.io/guides/getting-started-reactive#reactive-jax-rs-resources)
